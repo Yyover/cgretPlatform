@@ -18,7 +18,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Spring版本号 -->
-    <spring.version>5.0.3.RELEASE</spring.version>
+    <spring.version>5.2.2.RELEASE</spring.version>
     <!-- Mybatis版本号 -->
     <mybatis.version>3.4.4</mybatis.version>
     <!-- log4j日志文件管理包版本 -->
