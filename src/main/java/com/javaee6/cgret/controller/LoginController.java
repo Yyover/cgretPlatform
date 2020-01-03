@@ -2,7 +2,6 @@ package com.javaee6.cgret.controller;
 
 
 import com.javaee6.cgret.service.ILoginService;
-import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,9 +54,9 @@ public class LoginController {
      * @return
      * 进入用户主界面
      */
-    @RequestMapping("/mainInterface")
+    @RequestMapping("/admin_main")
     public String welcomeToBase(HttpSession session){
         System.out.println("欢迎用户" + session.getAttribute("buyerName") + "带着他/她的信息进入主界面了");
-        return "Main_base";
+        return "Admin_main";
     }
 }

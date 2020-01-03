@@ -104,133 +104,133 @@ public class CgretExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andCgretidIsNull() {
-            addCriterion("cgretID is null");
+        public Criteria andCgretIdIsNull() {
+            addCriterion("cgret_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidIsNotNull() {
-            addCriterion("cgretID is not null");
+        public Criteria andCgretIdIsNotNull() {
+            addCriterion("cgret_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidEqualTo(Integer value) {
-            addCriterion("cgretID =", value, "cgretid");
+        public Criteria andCgretIdEqualTo(Integer value) {
+            addCriterion("cgret_id =", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidNotEqualTo(Integer value) {
-            addCriterion("cgretID <>", value, "cgretid");
+        public Criteria andCgretIdNotEqualTo(Integer value) {
+            addCriterion("cgret_id <>", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidGreaterThan(Integer value) {
-            addCriterion("cgretID >", value, "cgretid");
+        public Criteria andCgretIdGreaterThan(Integer value) {
+            addCriterion("cgret_id >", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("cgretID >=", value, "cgretid");
+        public Criteria andCgretIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cgret_id >=", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidLessThan(Integer value) {
-            addCriterion("cgretID <", value, "cgretid");
+        public Criteria andCgretIdLessThan(Integer value) {
+            addCriterion("cgret_id <", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidLessThanOrEqualTo(Integer value) {
-            addCriterion("cgretID <=", value, "cgretid");
+        public Criteria andCgretIdLessThanOrEqualTo(Integer value) {
+            addCriterion("cgret_id <=", value, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidIn(List<Integer> values) {
-            addCriterion("cgretID in", values, "cgretid");
+        public Criteria andCgretIdIn(List<Integer> values) {
+            addCriterion("cgret_id in", values, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidNotIn(List<Integer> values) {
-            addCriterion("cgretID not in", values, "cgretid");
+        public Criteria andCgretIdNotIn(List<Integer> values) {
+            addCriterion("cgret_id not in", values, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidBetween(Integer value1, Integer value2) {
-            addCriterion("cgretID between", value1, value2, "cgretid");
+        public Criteria andCgretIdBetween(Integer value1, Integer value2) {
+            addCriterion("cgret_id between", value1, value2, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCgretidNotBetween(Integer value1, Integer value2) {
-            addCriterion("cgretID not between", value1, value2, "cgretid");
+        public Criteria andCgretIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("cgret_id not between", value1, value2, "cgretId");
             return (Criteria) this;
         }
 
-        public Criteria andCnameIsNull() {
-            addCriterion("cName is null");
+        public Criteria andCgretNameIsNull() {
+            addCriterion("cgret_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andCnameIsNotNull() {
-            addCriterion("cName is not null");
+        public Criteria andCgretNameIsNotNull() {
+            addCriterion("cgret_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCnameEqualTo(String value) {
-            addCriterion("cName =", value, "cname");
+        public Criteria andCgretNameEqualTo(String value) {
+            addCriterion("cgret_name =", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameNotEqualTo(String value) {
-            addCriterion("cName <>", value, "cname");
+        public Criteria andCgretNameNotEqualTo(String value) {
+            addCriterion("cgret_name <>", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameGreaterThan(String value) {
-            addCriterion("cName >", value, "cname");
+        public Criteria andCgretNameGreaterThan(String value) {
+            addCriterion("cgret_name >", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameGreaterThanOrEqualTo(String value) {
-            addCriterion("cName >=", value, "cname");
+        public Criteria andCgretNameGreaterThanOrEqualTo(String value) {
+            addCriterion("cgret_name >=", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameLessThan(String value) {
-            addCriterion("cName <", value, "cname");
+        public Criteria andCgretNameLessThan(String value) {
+            addCriterion("cgret_name <", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameLessThanOrEqualTo(String value) {
-            addCriterion("cName <=", value, "cname");
+        public Criteria andCgretNameLessThanOrEqualTo(String value) {
+            addCriterion("cgret_name <=", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameLike(String value) {
-            addCriterion("cName like", value, "cname");
+        public Criteria andCgretNameLike(String value) {
+            addCriterion("cgret_name like", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameNotLike(String value) {
-            addCriterion("cName not like", value, "cname");
+        public Criteria andCgretNameNotLike(String value) {
+            addCriterion("cgret_name not like", value, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameIn(List<String> values) {
-            addCriterion("cName in", values, "cname");
+        public Criteria andCgretNameIn(List<String> values) {
+            addCriterion("cgret_name in", values, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameNotIn(List<String> values) {
-            addCriterion("cName not in", values, "cname");
+        public Criteria andCgretNameNotIn(List<String> values) {
+            addCriterion("cgret_name not in", values, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameBetween(String value1, String value2) {
-            addCriterion("cName between", value1, value2, "cname");
+        public Criteria andCgretNameBetween(String value1, String value2) {
+            addCriterion("cgret_name between", value1, value2, "cgretName");
             return (Criteria) this;
         }
 
-        public Criteria andCnameNotBetween(String value1, String value2) {
-            addCriterion("cName not between", value1, value2, "cname");
+        public Criteria andCgretNameNotBetween(String value1, String value2) {
+            addCriterion("cgret_name not between", value1, value2, "cgretName");
             return (Criteria) this;
         }
     }

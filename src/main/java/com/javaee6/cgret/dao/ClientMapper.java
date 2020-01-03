@@ -2,15 +2,16 @@ package com.javaee6.cgret.dao;
 
 import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.model.ClientExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface ClientMapper {
-    long countByExample(ClientExample example);
+    int countByExample(ClientExample example);
 
     int deleteByExample(ClientExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long clientId);
 
     int insert(Client record);
 
@@ -18,7 +19,7 @@ public interface ClientMapper {
 
     List<Client> selectByExample(ClientExample example);
 
-    Client selectByPrimaryKey(Integer id);
+    Client selectByPrimaryKey(Long clientId);
 
     int updateByExampleSelective(@Param("record") Client record, @Param("example") ClientExample example);
 

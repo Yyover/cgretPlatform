@@ -118,4 +118,5 @@
     </bean>
 
 
+    <import resource="spring-elastic.xml"/>
 </beans>

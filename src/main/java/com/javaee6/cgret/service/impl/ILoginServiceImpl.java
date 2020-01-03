@@ -1,7 +1,7 @@
 package com.javaee6.cgret.service.impl;
 
 import com.javaee6.cgret.dao.ClientMapper;
-import com.javaee6.cgret.model.Client;
+import com.javaee6.cgret.test.Client;
 import com.javaee6.cgret.model.ClientExample;
 import com.javaee6.cgret.service.ILoginService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,6 @@ public class ILoginServiceImpl implements ILoginService {
 
     @Resource
     private ClientMapper mapper;
-
 
     @Override
     public boolean checkBuyerLogin(String loginName, String loginPwd, HttpSession session) {
@@ -50,6 +49,7 @@ public class ILoginServiceImpl implements ILoginService {
         session.setAttribute("buyerTel", clientList.get(0).getTelephone());
         session.setAttribute("buyerPwd", clientList.get(0).getPassword());
     }
+
 
 
 }

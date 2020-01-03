@@ -1,23 +1,23 @@
 package com.javaee6.cgret.model;
 
 public class Company {
-    private Integer companyid;
+    private Integer companyId;
 
-    private String companyname;
+    private String companyName;
 
-    public Integer getCompanyid() {
-        return companyid;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
-    public void setCompanyid(Integer companyid) {
-        this.companyid = companyid;
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
-    public String getCompanyname() {
-        return companyname;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompanyname(String companyname) {
-        this.companyname = companyname;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

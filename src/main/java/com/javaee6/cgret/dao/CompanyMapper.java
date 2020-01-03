@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CompanyMapper {
-    long countByExample(CompanyExample example);
+    int countByExample(CompanyExample example);
 
     int deleteByExample(CompanyExample example);
 
-    int deleteByPrimaryKey(Integer companyid);
+    int deleteByPrimaryKey(Integer companyId);
 
     int insert(Company record);
 
@@ -18,7 +18,7 @@ public interface CompanyMapper {
 
     List<Company> selectByExample(CompanyExample example);
 
-    Company selectByPrimaryKey(Integer companyid);
+    Company selectByPrimaryKey(Integer companyId);
 
     int updateByExampleSelective(@Param("record") Company record, @Param("example") CompanyExample example);
 

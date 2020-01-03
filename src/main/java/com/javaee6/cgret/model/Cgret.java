@@ -1,23 +1,23 @@
 package com.javaee6.cgret.model;
 
 public class Cgret {
-    private Integer cgretid;
+    private Integer cgretId;
 
-    private String cname;
+    private String cgretName;
 
-    public Integer getCgretid() {
-        return cgretid;
+    public Integer getCgretId() {
+        return cgretId;
     }
 
-    public void setCgretid(Integer cgretid) {
-        this.cgretid = cgretid;
+    public void setCgretId(Integer cgretId) {
+        this.cgretId = cgretId;
     }
 
-    public String getCname() {
-        return cname;
+    public String getCgretName() {
+        return cgretName;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setCgretName(String cgretName) {
+        this.cgretName = cgretName;
     }
 }

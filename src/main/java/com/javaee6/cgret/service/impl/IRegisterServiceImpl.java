@@ -3,7 +3,7 @@ package com.javaee6.cgret.service.impl;
 import com.github.pagehelper.util.StringUtil;
 import com.javaee6.cgret.dao.ClientMapper;
 import com.javaee6.cgret.dao.ClientMapperX;
-import com.javaee6.cgret.model.Client;
+import com.javaee6.cgret.test.Client;
 import com.javaee6.cgret.model.ClientExample;
 import com.javaee6.cgret.service.IRegisterService;
 import org.springframework.stereotype.Service;

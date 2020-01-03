@@ -3,9 +3,9 @@ package com.javaee6.cgret.model;
 import java.util.Date;
 
 public class Client {
-    private Integer id;
+    private Long clientId;
 
-    private String name;
+    private String clientName;
 
     private String password;
 
@@ -17,20 +17,26 @@ public class Client {
 
     private String articleCode;
 
-    public Integer getId() {
-        return id;
+    private String haedUrl;
+
+    private Long defAddressId;
+
+    private String defAddress;
+
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public String getName() {
-        return name;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getPassword() {
@@ -71,5 +77,29 @@ public class Client {
 
     public void setArticleCode(String articleCode) {
         this.articleCode = articleCode;
+    }
+
+    public String getHaedUrl() {
+        return haedUrl;
+    }
+
+    public void setHaedUrl(String haedUrl) {
+        this.haedUrl = haedUrl;
+    }
+
+    public Long getDefAddressId() {
+        return defAddressId;
+    }
+
+    public void setDefAddressId(Long defAddressId) {
+        this.defAddressId = defAddressId;
+    }
+
+    public String getDefAddress() {
+        return defAddress;
+    }
+
+    public void setDefAddress(String defAddress) {
+        this.defAddress = defAddress;
     }
 }
