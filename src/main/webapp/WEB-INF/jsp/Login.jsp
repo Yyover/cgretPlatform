@@ -77,7 +77,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button id="close-btn" type="button" class="close" data-dismiss="modal">
+                    <button id="close-btn" type="button" class="close" data-dismiss="modal" >
                         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                     </button>
                     <h3 class="modal-title" id="modal-register-label">注册</h3>
@@ -127,7 +127,7 @@
     <script src="<%=basePath%>resources/assets/js/jquery.backstretch.min.js"></script>
     <script src="<%=basePath%>resources/assets/js/scripts.js"></script>
     <script src="<%=basePath%>resources/js/sweetalert.min.js"></script><!-- scripit init-->
-
+    <script src="<%=basePath%>resources/js/vue.min.js"></script>
 
     <!--[if lt IE 10]>
     <script src="<%=basePath%>resources/assets/js/placeholder.js"></script>
@@ -135,7 +135,6 @@
     </body>
 
 <script type="text/javascript">
-
     // 登录检查函数
     function check_login () {
         var login = $("#loginName").val();
@@ -144,7 +143,7 @@
         if(login == "" || login == null)
             alert("用户名/邮箱地址不能为空！");
         else if(pwd == "" || pwd == null)
-            alert("密码不能为空！")
+            alert("密码不能为空！");
         /*else if(!(chk[0].checked)){
             $.ajax({
                 type:"post",
@@ -169,7 +168,7 @@
                 success:function (str2) {
                     if(str2 == "match"){
                         // 跳转到主界面
-                         window.location.href="mainInterface";
+                         window.location.href="admin_main";
                     } else if(str2 == "unmatch"){
                         alert("用户名不存在或密码错误！");
                     }

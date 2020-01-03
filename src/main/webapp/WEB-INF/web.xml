@@ -56,6 +56,10 @@
   <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
+  <!-- 监听Elasticsearch -->
+  <listener>
+    <listener-class>com.javaee6.cgret.listener.ElasticListener</listener-class>
+  </listener>
 
   <!--servlet配置-->
   <servlet>
