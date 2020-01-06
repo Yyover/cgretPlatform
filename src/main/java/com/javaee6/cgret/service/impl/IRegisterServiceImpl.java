@@ -3,7 +3,7 @@ package com.javaee6.cgret.service.impl;
 import com.github.pagehelper.util.StringUtil;
 import com.javaee6.cgret.dao.ClientMapper;
 import com.javaee6.cgret.dao.ClientMapperX;
-import com.javaee6.cgret.test.Client;
+import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.model.ClientExample;
 import com.javaee6.cgret.service.IRegisterService;
 import org.springframework.stereotype.Service;
@@ -78,7 +78,7 @@ public class IRegisterServiceImpl implements IRegisterService {
 
         if(isName(regName)){
 
-            criteriac.andNameEqualTo(regName);
+            criteriac.andClientNameEqualTo(regName);
             if(mapper.selectByExample(example).size() == 0) {
                 return "用户名正确";
             }
@@ -194,18 +194,18 @@ public class IRegisterServiceImpl implements IRegisterService {
         Client Client = new Client();
 
         // 生成用户ID，以后要改
-        Integer ID;
+        Long ID;
         while (true){
-            ID = new Random().nextInt(99999999);
+            ID = new Random().nextLong();
             if(mapper.selectByPrimaryKey(ID) == null){
              break;
             }
         }
-        int numOfClient = mapper2.numOfClient();
+        Long numOfClient = mapper2.numOfClient();
         String temp = "";
 
-        Client.setId(numOfClient+1);
-        Client.setName(regName);
+        Client.setClientId(numOfClient+1);
+        Client.setClientName(regName);
         Client.setPassword(regPwd);
         Client.setEmail(regEmail);
         if(!(regTel.equals(temp))){
@@ -228,7 +228,7 @@ public class IRegisterServiceImpl implements IRegisterService {
         client.setCreateTime(new Date());
         ClientExample example = new ClientExample();
         ClientExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(regName);
+        criteria.andClientNameEqualTo(regName);
         mapper.updateByExampleSelective(client,example);
     }
 
@@ -265,7 +265,7 @@ public class IRegisterServiceImpl implements IRegisterService {
         client.setArticleCode(actiCode.toString());
         ClientExample example = new ClientExample();
         ClientExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(regName);
+        criteria.andClientNameEqualTo(regName);
         mapper.updateByExampleSelective(client,example);
         return actiCode.toString();
     }
@@ -280,7 +280,7 @@ public class IRegisterServiceImpl implements IRegisterService {
     public boolean checkCode(String userName, String actiCode){
         ClientExample example = new ClientExample();
         ClientExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(userName);
+        criteria.andClientNameEqualTo(userName);
         List<Client> list = mapper.selectByExample(example);
         if(list.size() == 1){
             if(list.get(0).getArticleCode().equals(actiCode)){
@@ -303,7 +303,7 @@ public class IRegisterServiceImpl implements IRegisterService {
 
         ClientExample example = new ClientExample();
         ClientExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(regName);
+        criteria.andClientNameEqualTo(regName);
         List<Client> list = mapper.selectByExample(example);
         String  activated = "0000";
 

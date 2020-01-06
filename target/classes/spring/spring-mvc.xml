@@ -26,7 +26,8 @@
 
 
     <!-- 1、配置映射器与适配器 -->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
 
     <!-- 2、视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -82,4 +83,5 @@
     <!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/resources"/>
 
+    <import resource="spring-redis.xml"/>
 </beans>

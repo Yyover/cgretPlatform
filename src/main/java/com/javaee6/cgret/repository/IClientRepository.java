@@ -1,6 +1,6 @@
 package com.javaee6.cgret.repository;
 
-import com.javaee6.cgret.test.Client;
+import com.javaee6.cgret.model.Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
@@ -20,11 +20,11 @@ public interface IClientRepository extends ElasticsearchRepository<Client, Long>
      * @param id
      * @return
      */
-    List<Client> getByid(Integer id);
+    List<Client> getByClientId(Long id);
 
-    List<Client> getListByname(String name);
+    List<Client> getListByClientName(String name);
 
-    Page<Client> getPageByname(String name, Pageable pageable);
+    Page<Client> getPageByClientName(String name, Pageable pageable);
 
 
 }

@@ -1,5 +1,10 @@
 package com.javaee6.cgret.model;
 
+/**
+ * @author hy
+ * 这个类暂时报废
+ */
+@Deprecated
 public class Company {
     private Integer companyId;
 

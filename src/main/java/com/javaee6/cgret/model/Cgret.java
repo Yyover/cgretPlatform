@@ -1,5 +1,6 @@
 package com.javaee6.cgret.model;
 
+@Deprecated
 public class Cgret {
     private Integer cgretId;
 

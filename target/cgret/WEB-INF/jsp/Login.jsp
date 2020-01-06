@@ -53,13 +53,8 @@
           </div>
           <form method="post">
               <input id="loginName" name="username" type="text"  placeholder="用户名" />
-                  <%--onfocus="this.value=''" onblur="if(this.value==''){this.value='用户名'}">--%>
-                  <%--<span  id="password_text" onclick="this.style.display='none';document.getElementById('password').style.display='block';document.getElementById('password').focus().select();" >密码</span>--%>
               <input id="password" name="password" type="password"  placeholder="密码"  />
-                  <%--&lt;%&ndash;onblur="if(this.value==''){&ndash;%&gt;--%>
-                  <%--// document.getElementById('password_text').style.display='block';--%>
-                  <%--// this.style.display='none'--%>
-                  <%--};--%>
+
           </form>
           <input value="登录" style="width:100%;" type="submit" onclick="check_login()"/>
           <div>  <a id="register_a"  class="launch-modal" href="#" data-modal-id="modal-register">免费注册</a> </div>
@@ -203,7 +198,7 @@
         var email_add = $("#register-email").val();
         var telphone = $("#register-tel").val();
 
-       t = 5;
+        t = 5;
 
         if(username == "" || username == null)
             alert("用户名不能为空！");

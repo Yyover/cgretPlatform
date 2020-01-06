@@ -1,8 +1,12 @@
 package com.javaee6.cgret.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.service.ILoginService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -56,7 +60,10 @@ public class LoginController {
      */
     @RequestMapping("/admin_main")
     public String welcomeToBase(HttpSession session){
-        System.out.println("欢迎用户" + session.getAttribute("buyerName") + "带着他/她的信息进入主界面了");
+        System.out.println("欢迎用户" + session.getAttribute("clientName") + "带着他/她的信息进入主界面了");
         return "Admin_main";
     }
+
+
+
 }

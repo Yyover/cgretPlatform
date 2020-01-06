@@ -1,6 +1,6 @@
 package com.javaee6.cgret.service.impl;
 
-import com.javaee6.cgret.test.Client;
+import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.service.IClientService;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
@@ -63,8 +63,8 @@ public class IClientRepositoryImpl implements IClientService {
      * @return
      */
     @Override
-    public List<Client> getByClientId(Integer id) {
-        return repository.getByid(id);
+    public List<Client> getByClientId(Long id) {
+        return repository.getByClientId(id);
     }
 
     /**
@@ -75,7 +75,7 @@ public class IClientRepositoryImpl implements IClientService {
      */
     @Override
     public List<Client> getByClientName(String clientName) {
-        return repository.getListByname(clientName);
+        return repository.getListByClientName(clientName);
     }
 
     /**
@@ -87,7 +87,7 @@ public class IClientRepositoryImpl implements IClientService {
      */
     @Override
     public List<Client> getPageByClientName(String clientName, Pageable pageable) {
-        Page<Client> clients = repository.getPageByname(clientName, pageable);
+        Page<Client> clients = repository.getPageByClientName(clientName, pageable);
         return  clients.getContent();
     }
 
@@ -145,7 +145,7 @@ public class IClientRepositoryImpl implements IClientService {
      * @param id
      */
     @Override
-    public void delete(String indexName, String type, Integer id) {
+    public void delete(String indexName, String type, Long id) {
 
         String idString = String.valueOf(id);
         template.delete(indexName, type, idString);

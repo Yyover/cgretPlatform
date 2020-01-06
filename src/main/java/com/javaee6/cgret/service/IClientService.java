@@ -1,6 +1,6 @@
 package com.javaee6.cgret.service;
 
-import com.javaee6.cgret.test.Client;
+import com.javaee6.cgret.model.Client;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public interface IClientService {
      * @param id
      * @return
      */
-    List<Client> getByClientId(Integer id);
+    List<Client> getByClientId(Long id);
 
     /**
      * 通过name得到List<client>
@@ -73,7 +73,7 @@ public interface IClientService {
      * @param id
      * 这里的id是string的，有待商榷
      */
-    void delete(String indexName, String type, Integer id);
+    void delete(String indexName, String type, Long id);
 
     /**
      * @param indexName
@@ -89,4 +89,5 @@ public interface IClientService {
      * @return
      */
     <T> List<T> findBySort(Class<T> clazz);
+
 }

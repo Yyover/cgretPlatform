@@ -1,7 +1,7 @@
 package com.javaee6.cgret.controller;
 
 
-import com.javaee6.cgret.test.Client;
+import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.repository.IClientRepository;
 import com.javaee6.cgret.service.IClientService;
 import com.javaee6.cgret.service.IMainClientService;
@@ -43,10 +43,11 @@ public class ElasticController {
      */
     @RequestMapping("/save1")
     public String save1(){
+        Long clientId = 49L;
 
         Client c = new Client();
-        c.setName("jjojo");
-        c.setId(49);
+        c.setClientName("jjojo");
+        c.setClientId(clientId);
         c.setTelephone(Long.valueOf("15478845565"));
         c.setEmail("215412568@qq.com");
         c.setArticleCode("0000");
@@ -69,9 +70,9 @@ public class ElasticController {
         Iterable<Client> it = iClientRepository.findAll();
         Iterator<Client> iterator = it.iterator();
         Client cc = iterator.next();
-        System.out.println("======" + cc.getName());
-        System.out.println("=======" + cc.getId() );
-        return "index";
+        System.out.println("======" + cc.getClientName());
+        System.out.println("=======" + cc.getClientId() );
+        return "zz";
     }
 
     /**
@@ -85,9 +86,11 @@ public class ElasticController {
 
         // 初始化Client client = null; 之后会报空指针错误。
        Client client = new Client();
-       client.setId(100);
+       long clientId = 100;
+
+       client.setClientId(clientId);
        client.setPassword("123456");
-       client.setName("hl");
+       client.setClientName("hl");
        client.setArticleCode("0000");
        client.setEmail("521624522@qq.com");
        client.setTelephone(Long.valueOf("15814636918"));
@@ -97,10 +100,11 @@ public class ElasticController {
 
     @RequestMapping("/find")
     public void find(){
-        List<Client> clList = esService.getByClientId(100);
+        long clientId = 100;
+        List<Client> clList = esService.getByClientId(clientId);
 
         System.out.println("通过ID查询");
-        System.out.println(clList.get(0).getName());
+        System.out.println(clList.get(0).getClientName());
         System.out.println("---------------");
     }
 

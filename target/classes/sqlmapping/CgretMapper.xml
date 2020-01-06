@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.javaee6.cgret.dao.CgretMapper">
-  <resultMap id="BaseResultMap" type="com.javaee6.cgret.model.Cgret">
-    <id column="cgretID" jdbcType="INTEGER" property="cgretid" />
-    <result column="cName" jdbcType="VARCHAR" property="cname" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.javaee6.cgret.dao.CgretMapper" >
+  <resultMap id="BaseResultMap" type="com.javaee6.cgret.model.Cgret" >
+    <id column="cgret_id" property="cgretId" jdbcType="INTEGER" />
+    <result column="cgret_name" property="cgretName" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -34,25 +34,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -63,103 +63,103 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
-    cgretID, cName
+  <sql id="Base_Column_List" >
+    cgret_id, cgret_name
   </sql>
-  <select id="selectByExample" parameterType="com.javaee6.cgret.model.CgretExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.javaee6.cgret.model.CgretExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from cgret
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from cgret
-    where cgretID = #{cgretid,jdbcType=INTEGER}
+    where cgret_id = #{cgretId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cgret
-    where cgretID = #{cgretid,jdbcType=INTEGER}
+    where cgret_id = #{cgretId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.javaee6.cgret.model.CgretExample">
+  <delete id="deleteByExample" parameterType="com.javaee6.cgret.model.CgretExample" >
     delete from cgret
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.javaee6.cgret.model.Cgret">
-    insert into cgret (cgretID, cName)
-    values (#{cgretid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.javaee6.cgret.model.Cgret" >
+    insert into cgret (cgret_id, cgret_name)
+    values (#{cgretId,jdbcType=INTEGER}, #{cgretName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.javaee6.cgret.model.Cgret">
+  <insert id="insertSelective" parameterType="com.javaee6.cgret.model.Cgret" >
     insert into cgret
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cgretid != null">
-        cgretID,
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cgretId != null" >
+        cgret_id,
       </if>
-      <if test="cname != null">
-        cName,
+      <if test="cgretName != null" >
+        cgret_name,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cgretid != null">
-        #{cgretid,jdbcType=INTEGER},
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cgretId != null" >
+        #{cgretId,jdbcType=INTEGER},
       </if>
-      <if test="cname != null">
-        #{cname,jdbcType=VARCHAR},
+      <if test="cgretName != null" >
+        #{cgretName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.javaee6.cgret.model.CgretExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.javaee6.cgret.model.CgretExample" resultType="java.lang.Integer" >
     select count(*) from cgret
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update cgret
-    <set>
-      <if test="record.cgretid != null">
-        cgretID = #{record.cgretid,jdbcType=INTEGER},
+    <set >
+      <if test="record.cgretId != null" >
+        cgret_id = #{record.cgretId,jdbcType=INTEGER},
       </if>
-      <if test="record.cname != null">
-        cName = #{record.cname,jdbcType=VARCHAR},
+      <if test="record.cgretName != null" >
+        cgret_name = #{record.cgretName,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update cgret
-    set cgretID = #{record.cgretid,jdbcType=INTEGER},
-      cName = #{record.cname,jdbcType=VARCHAR}
-    <if test="_parameter != null">
+    set cgret_id = #{record.cgretId,jdbcType=INTEGER},
+      cgret_name = #{record.cgretName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.javaee6.cgret.model.Cgret">
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaee6.cgret.model.Cgret" >
     update cgret
-    <set>
-      <if test="cname != null">
-        cName = #{cname,jdbcType=VARCHAR},
+    <set >
+      <if test="cgretName != null" >
+        cgret_name = #{cgretName,jdbcType=VARCHAR},
       </if>
     </set>
-    where cgretID = #{cgretid,jdbcType=INTEGER}
+    where cgret_id = #{cgretId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.javaee6.cgret.model.Cgret">
+  <update id="updateByPrimaryKey" parameterType="com.javaee6.cgret.model.Cgret" >
     update cgret
-    set cName = #{cname,jdbcType=VARCHAR}
-    where cgretID = #{cgretid,jdbcType=INTEGER}
+    set cgret_name = #{cgretName,jdbcType=VARCHAR}
+    where cgret_id = #{cgretId,jdbcType=INTEGER}
   </update>
 </mapper>
