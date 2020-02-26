@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.javaee6.cgret.model.Client" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/12/28
@@ -9,6 +9,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    Client client = (Client)request.getSession().getAttribute("clientInfo");
 %>
 <html>
 <head>
@@ -18,12 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-    <link rel="stylesheet" href="<%=basePath%>resources/assets/css/style.css">
+    <link rel="stylesheet" href="<%=basePath%>resources/static/assets/css/style.css">
 
     <script type="text/javascript">
         var wait_time = parseInt(getCookie("wait"));
-        var mail = "${sessionScope.reg_Email}";
-        var name = "${sessionScope.reg_name}";
+        var mail = <%=client.getEmail()%>;
+        var name = <%=client.getClientName()%>;
         function aboutBtn(o) {
             if(wait_time == 0){
                 o.removeAttribute("disabled");
@@ -89,7 +90,7 @@
 
 </head>
 <body onload="resetCookie();" onunload="resetCookie();">
-<h1 style="text-align: center; color: black; font-size: 35px">我们已向您的注册邮箱${sessionScope.reg_Email}发送了一封验证邮件，请按照邮件的步骤完成验证。</h1>
+<h1 style="text-align: center; color: black; font-size: 35px">我们已向您的注册邮箱<%=client.getEmail()%>发送了一封验证邮件，请按照邮件的步骤完成验证。</h1>
 <h2 style="text-align: center; color: red; font-size: 20px">30秒内没有收到邮件?</h2>
 <div style="position: absolute;right: 0px;width: 800px ;border: 3px; padding: 10px;">
     <input id="btn" type="button" value="点此发送" onclick="reSend();aboutBtn(this);"></input>

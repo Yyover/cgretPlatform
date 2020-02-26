@@ -1,18 +1,30 @@
 package com.javaee6.cgret.service.impl;
 
-import com.javaee6.cgret.dao.ClientMapper;
-import com.javaee6.cgret.dao.ClientMapperX;
-import com.javaee6.cgret.dao.ClientShoppingAddressMapper;
-import com.javaee6.cgret.model.Client;
-import com.javaee6.cgret.model.ClientExample;
-import com.javaee6.cgret.model.ClientShoppingAddress;
-import com.javaee6.cgret.model.ClientShoppingAddressExample;
+
+import com.javaee6.cgret.dao.*;
+import com.javaee6.cgret.model.*;
 import com.javaee6.cgret.service.IMainClientService;
-import com.mysql.cj.jdbc.interceptors.ConnectionLifecycleInterceptor;
+import com.javaee6.cgret.service.IShopCartService;
+
+import com.javaee6.cgret.util.CookieUtil;
+import com.javaee6.cgret.util.JedisUtil;
+import com.javaee6.cgret.util.SerializeUtil;
+import com.sun.deploy.util.SessionState;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import sun.awt.SunHints;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+
+import javax.persistence.criteria.Order;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +38,15 @@ public class IMainClientServiceImpl implements IMainClientService {
 
     @Resource
     private ClientShoppingAddressMapper clientShoppingAddressMapper;
+
+    @Resource
+    private HttpServletRequest request;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource
+    private JedisUtil jedisUtil;
 
     @Override
     public Client getById(Long id) {
@@ -48,18 +69,20 @@ public class IMainClientServiceImpl implements IMainClientService {
      * @param district
      */
     @Override
-    public void insertDefaultAddress(HttpSession session, String detailAddress, String province, String city, String district) {
+    public void insertDefaultAddress(HttpServletRequest request, String detailAddress, String province, String city, String district) {
+
+        Client client = (Client) request.getSession().getAttribute("clientInfo");
 
         ClientShoppingAddressExample example = new ClientShoppingAddressExample();
         Long addressNum = clientShoppingAddressMapper.countByExample(example);
         System.out.println(addressNum);
         Long addressId = addressNum+1;
 
-        String contactor = (String) session.getAttribute("clientname");
-        Long clientTel = (Long) session.getAttribute("clientTel");
+        String contactor = client.getClientName();
+        Long clientTel = client.getTelephone();
         System.out.println("contactor" + contactor + clientTel);
 
-        Long clientId = (Long) session.getAttribute("clientId");
+        Long clientId = client.getClientId();
 
         ClientShoppingAddress csAddress = new ClientShoppingAddress();
         csAddress.setAddressId(addressId);
@@ -69,6 +92,7 @@ public class IMainClientServiceImpl implements IMainClientService {
         csAddress.setDetail(detailAddress);
         csAddress.setContactor(contactor);
         csAddress.setTelephone(clientTel);
+
 
         clientShoppingAddressMapper.insert(csAddress);
         System.out.println("用户地址表添加成功");
@@ -82,4 +106,6 @@ public class IMainClientServiceImpl implements IMainClientService {
         // 更新成功
 
     }
+
+
 }

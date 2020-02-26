@@ -1,22 +1,18 @@
 package com.javaee6.cgret.service.impl;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.javaee6.cgret.dao.ClientMapper;
 import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.model.ClientExample;
 import com.javaee6.cgret.service.ILoginService;
-import com.javaee6.cgret.util.JSONUtils;
-import org.springframework.beans.factory.annotation.Value;
+import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ILoginServiceImpl implements ILoginService {
@@ -31,7 +27,8 @@ public class ILoginServiceImpl implements ILoginService {
     private Integer SESSION_EXPIRE;
 
     @Override
-    public boolean checkBuyerLogin(String loginName, String loginPwd, HttpSession session) {
+    public boolean checkBuyerLogin(String loginName, String loginPwd, HttpServletRequest request) {
+
         ClientExample example = new ClientExample();
         ClientExample.Criteria criteria = example.createCriteria();
 
@@ -44,14 +41,46 @@ public class ILoginServiceImpl implements ILoginService {
         if(clientList.size() == 1){
             if(client.getPassword().equals(loginPwd) && client.getArticleCode().equals("0000")){
                 // 登陆成功
-                //写cokkie
-                storeInSession(clientList, session);
+
+              /*  // 方法一：存进session
+                storeInSession(clientList, session);*/
+
+                // 方法二：存进threadlocal的session中
+                storeInThreadLocal(clientList, request);
+
                 return true;
             } else {
                 return false;
             }
         }
         return false;
+    }
+
+    /**
+     * 通过name得到client
+     * @param userName
+     * @return
+     */
+    @Override
+    public Client getUserByUserName(String userName) {
+        ClientExample example = new ClientExample();
+        ClientExample.Criteria criteria = example.createCriteria();
+
+        List<Client> clientList;
+        criteria.andClientNameEqualTo(userName);
+        clientList = mapper.selectByExample(example);
+        return clientList.get(0);
+    }
+
+    /**
+     * 查询用户role
+     * @param userName
+     * @return
+     */
+    @Override
+    public String queryRoleByUserName(String userName) {
+        Client client = getUserByUserName(userName);
+        return client.getIdentitytype();
     }
 
     /**
@@ -71,5 +100,9 @@ public class ILoginServiceImpl implements ILoginService {
     }
 
 
+    private void storeInThreadLocal(List<Client> clientList, HttpServletRequest request){
+        Client client = clientList.get(0);
+        request.getSession().setAttribute("clientInfo", client);
+    }
 
 }

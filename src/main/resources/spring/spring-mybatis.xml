@@ -2,19 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+         http://www.springframework.org/schema/aop
+		 http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context-4.3.xsd
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
          http://www.springframework.org/schema/mvc
-         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd"  >
+         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <!-- 1 自动扫描 将标注Spring注解的类自动转化Bean -->
-    <context:component-scan base-package="com.javaee6.cgret"/>
-
-
+    <context:component-scan base-package="com.javaee6.cgret.controller"/>
 
     <!--2 加载数据资源属性文件 配置jdbc数据库连接池 -->
     <!-- <context:property-placeholder location="classpath:db.properties"/> -->
@@ -62,21 +67,10 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-
-    <!-- 拦截器 -->
-    <mvc:interceptors>
-        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
-    </mvc:interceptors>
     <!-- 定义无Controller的path<->view直接映射 -->
     <!-- <mvc:view-controller path="/" view-name="redirect:/" /> -->
-
-    <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
-    <mvc:annotation-driven/>
-
-
-
 
     <!-- 静态资源访问 -->
     <!--如果webapp下你新建了文件夹，想访问里面的静态资源，那么就要在这配置一下-->
@@ -117,6 +111,85 @@
         <property name="resolveLazily" value="true"/>
     </bean>
 
+
+
+    <!-- 自定义shiro写到环境中-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <property name="realm" ref="realm"/>
+        <property name="rememberMeManager" ref="cookieRememberMeManager"/>
+    </bean>
+
+    <bean class="com.javaee6.cgret.controller.customReaml" id="realm">
+        <!--<property name="credentialsMatcher" ref="credentialsMatcher"/>-->
+    </bean>
+
+    <!-- 加密管理器对象
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>-->
+
+    <!-- 注解配置授权 -->
+    <aop:config proxy-target-class="true"/>
+
+  <!--  <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
+        &lt;!&ndash; 配置验证错误是的失败页面 &ndash;&gt;
+        <property name="failureUrl" value="cas404"/>
+    </bean>
+-->
+    <!-- shiro配置 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- shiro的核心安全接口，这个属性必须要 -->
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="login"/>
+        <property name="unauthorizedUrl" value="four0Three"/>
+
+      <!--  <property name="filters">
+            <util:map>
+                &lt;!&ndash; 添加casFilter到shiroFilter集合 &ndash;&gt;
+                <entry key="casFilter" value-ref="casFilter"/>
+            </util:map>
+
+        </property>-->
+
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- anno意味着不需要经过shiro认证-->
+                /login = anon
+                /buyerCheck = anon
+                /subLogin = anon
+                /static = anon
+                /* = anon
+            </value>
+        </property>
+    </bean>
+
+   <!--  单点登录的配置
+    <bean id="casRealm" class="com.javaee6.cgret.Shiro.MyCasRealm">
+        &lt;!&ndash; 这里需要创建 Class casRealm extend casRealm  &ndash;&gt;
+        <property name="defaultRoles" value="RoLE_USER"/>
+        <property name="casServerUrlPrefix" value="http://cas.uat."
+    </bean>-->
+
+    <!--保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 开启shiro的注解 -->
+   <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+       <property name="securityManager" ref="securityManager"/>
+   </bean>
+
+    <!-- Shiro rememberMe -->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="20000000"/>
+    </bean>
+
+    <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
+    <mvc:annotation-driven/>
 
     <import resource="spring-elastic.xml"/>
 </beans>

@@ -791,6 +791,76 @@ public class ClientExample {
             addCriterion("def_address not between", value1, value2, "defAddress");
             return (Criteria) this;
         }
+
+        public Criteria andIdentitytypeIsNull() {
+            addCriterion("identityType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeIsNotNull() {
+            addCriterion("identityType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeEqualTo(String value) {
+            addCriterion("identityType =", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeNotEqualTo(String value) {
+            addCriterion("identityType <>", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeGreaterThan(String value) {
+            addCriterion("identityType >", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeGreaterThanOrEqualTo(String value) {
+            addCriterion("identityType >=", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeLessThan(String value) {
+            addCriterion("identityType <", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeLessThanOrEqualTo(String value) {
+            addCriterion("identityType <=", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeLike(String value) {
+            addCriterion("identityType like", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeNotLike(String value) {
+            addCriterion("identityType not like", value, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeIn(List<String> values) {
+            addCriterion("identityType in", values, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeNotIn(List<String> values) {
+            addCriterion("identityType not in", values, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeBetween(String value1, String value2) {
+            addCriterion("identityType between", value1, value2, "identitytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentitytypeNotBetween(String value1, String value2) {
+            addCriterion("identityType not between", value1, value2, "identitytype");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

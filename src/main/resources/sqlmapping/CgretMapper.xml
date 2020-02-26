@@ -2,8 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.javaee6.cgret.dao.CgretMapper" >
   <resultMap id="BaseResultMap" type="com.javaee6.cgret.model.Cgret" >
-    <id column="cgret_id" property="cgretId" jdbcType="INTEGER" />
-    <result column="cgret_name" property="cgretName" jdbcType="VARCHAR" />
+    <id column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="brandId" property="brandid" jdbcType="INTEGER" />
+    <result column="brandDetailId" property="branddetailid" jdbcType="INTEGER" />
+    <result column="typeId" property="typeid" jdbcType="VARCHAR" />
+    <result column="jiaoyouId" property="jiaoyouid" jdbcType="INTEGER" />
+    <result column="barCode" property="barcode" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="imageUrl" property="imageurl" jdbcType="VARCHAR" />
+    <result column="leftNum" property="leftnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="deleteStatus" property="deletestatus" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="saleNum" property="salenum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cgret_id, cgret_name
+    productId, productName, brandId, brandDetailId, typeId, jiaoyouId, barCode, price, 
+    imageUrl, leftNum, status, update_time, deleteStatus, version, saleNum
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.javaee6.cgret.model.CgretExample" >
     select
@@ -85,11 +99,11 @@
     select 
     <include refid="Base_Column_List" />
     from cgret
-    where cgret_id = #{cgretId,jdbcType=INTEGER}
+    where productId = #{productid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cgret
-    where cgret_id = #{cgretId,jdbcType=INTEGER}
+    where productId = #{productid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.javaee6.cgret.model.CgretExample" >
     delete from cgret
@@ -98,25 +112,113 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.javaee6.cgret.model.Cgret" >
-    insert into cgret (cgret_id, cgret_name)
-    values (#{cgretId,jdbcType=INTEGER}, #{cgretName,jdbcType=VARCHAR})
+    insert into cgret (productId, productName, brandId, 
+      brandDetailId, typeId, jiaoyouId, 
+      barCode, price, imageUrl, 
+      leftNum, status, update_time, 
+      deleteStatus, version, saleNum
+      )
+    values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{brandid,jdbcType=INTEGER}, 
+      #{branddetailid,jdbcType=INTEGER}, #{typeid,jdbcType=VARCHAR}, #{jiaoyouid,jdbcType=INTEGER}, 
+      #{barcode,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{imageurl,jdbcType=VARCHAR}, 
+      #{leftnum,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deletestatus,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{salenum,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.javaee6.cgret.model.Cgret" >
     insert into cgret
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="cgretId != null" >
-        cgret_id,
+      <if test="productid != null" >
+        productId,
       </if>
-      <if test="cgretName != null" >
-        cgret_name,
+      <if test="productname != null" >
+        productName,
+      </if>
+      <if test="brandid != null" >
+        brandId,
+      </if>
+      <if test="branddetailid != null" >
+        brandDetailId,
+      </if>
+      <if test="typeid != null" >
+        typeId,
+      </if>
+      <if test="jiaoyouid != null" >
+        jiaoyouId,
+      </if>
+      <if test="barcode != null" >
+        barCode,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="imageurl != null" >
+        imageUrl,
+      </if>
+      <if test="leftnum != null" >
+        leftNum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deletestatus != null" >
+        deleteStatus,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="salenum != null" >
+        saleNum,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="cgretId != null" >
-        #{cgretId,jdbcType=INTEGER},
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
       </if>
-      <if test="cgretName != null" >
-        #{cgretName,jdbcType=VARCHAR},
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="branddetailid != null" >
+        #{branddetailid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaoyouid != null" >
+        #{jiaoyouid,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="imageurl != null" >
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="leftnum != null" >
+        #{leftnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletestatus != null" >
+        #{deletestatus,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="salenum != null" >
+        #{salenum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -129,11 +231,50 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update cgret
     <set >
-      <if test="record.cgretId != null" >
-        cgret_id = #{record.cgretId,jdbcType=INTEGER},
+      <if test="record.productid != null" >
+        productId = #{record.productid,jdbcType=INTEGER},
       </if>
-      <if test="record.cgretName != null" >
-        cgret_name = #{record.cgretName,jdbcType=VARCHAR},
+      <if test="record.productname != null" >
+        productName = #{record.productname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandid != null" >
+        brandId = #{record.brandid,jdbcType=INTEGER},
+      </if>
+      <if test="record.branddetailid != null" >
+        brandDetailId = #{record.branddetailid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeid != null" >
+        typeId = #{record.typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jiaoyouid != null" >
+        jiaoyouId = #{record.jiaoyouid,jdbcType=INTEGER},
+      </if>
+      <if test="record.barcode != null" >
+        barCode = #{record.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.imageurl != null" >
+        imageUrl = #{record.imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftnum != null" >
+        leftNum = #{record.leftnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletestatus != null" >
+        deleteStatus = #{record.deletestatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.salenum != null" >
+        saleNum = #{record.salenum,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,8 +283,21 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update cgret
-    set cgret_id = #{record.cgretId,jdbcType=INTEGER},
-      cgret_name = #{record.cgretName,jdbcType=VARCHAR}
+    set productId = #{record.productid,jdbcType=INTEGER},
+      productName = #{record.productname,jdbcType=VARCHAR},
+      brandId = #{record.brandid,jdbcType=INTEGER},
+      brandDetailId = #{record.branddetailid,jdbcType=INTEGER},
+      typeId = #{record.typeid,jdbcType=VARCHAR},
+      jiaoyouId = #{record.jiaoyouid,jdbcType=INTEGER},
+      barCode = #{record.barcode,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=REAL},
+      imageUrl = #{record.imageurl,jdbcType=VARCHAR},
+      leftNum = #{record.leftnum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleteStatus = #{record.deletestatus,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      saleNum = #{record.salenum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -151,15 +305,67 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.javaee6.cgret.model.Cgret" >
     update cgret
     <set >
-      <if test="cgretName != null" >
-        cgret_name = #{cgretName,jdbcType=VARCHAR},
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null" >
+        brandId = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="branddetailid != null" >
+        brandDetailId = #{branddetailid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        typeId = #{typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaoyouid != null" >
+        jiaoyouId = #{jiaoyouid,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        barCode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="imageurl != null" >
+        imageUrl = #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="leftnum != null" >
+        leftNum = #{leftnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletestatus != null" >
+        deleteStatus = #{deletestatus,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="salenum != null" >
+        saleNum = #{salenum,jdbcType=INTEGER},
       </if>
     </set>
-    where cgret_id = #{cgretId,jdbcType=INTEGER}
+    where productId = #{productid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.javaee6.cgret.model.Cgret" >
     update cgret
-    set cgret_name = #{cgretName,jdbcType=VARCHAR}
-    where cgret_id = #{cgretId,jdbcType=INTEGER}
+    set productName = #{productname,jdbcType=VARCHAR},
+      brandId = #{brandid,jdbcType=INTEGER},
+      brandDetailId = #{branddetailid,jdbcType=INTEGER},
+      typeId = #{typeid,jdbcType=VARCHAR},
+      jiaoyouId = #{jiaoyouid,jdbcType=INTEGER},
+      barCode = #{barcode,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      imageUrl = #{imageurl,jdbcType=VARCHAR},
+      leftNum = #{leftnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleteStatus = #{deletestatus,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      saleNum = #{salenum,jdbcType=INTEGER}
+    where productId = #{productid,jdbcType=INTEGER}
   </update>
 </mapper>

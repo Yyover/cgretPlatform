@@ -19,9 +19,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="<%=basePath%>resources/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=basePath%>resources/assets/css/form-elements.css">
-    <link rel="stylesheet" href="<%=basePath%>resources/assets/css/style.css">
+    <link rel="stylesheet" href="<%=basePath%>resources/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>resources/static/assets/css/form-elements.css">
+    <link rel="stylesheet" href="<%=basePath%>resources/static/assets/css/style.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,35 +31,30 @@
     <![endif]-->
 
     <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="<%=basePath%>resources/assets/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=basePath%>resources/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=basePath%>resources/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=basePath%>resources/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>resources/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="<%=basePath%>resources/static/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=basePath%>resources/static/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=basePath%>resources/static/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=basePath%>resources/static/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>resources/static/assets/ico/apple-touch-icon-57-precomposed.png">
 
     <title>烟草公司订货平台</title>
-<link href="<%=basePath%>resources/css/login.css" rel="stylesheet" type="text/css" />
+<link href="<%=basePath%>resources/static/css/login.css" rel="stylesheet" type="text/css" />
 
 
 </head>
 
 <body>
 <div class="login_box">
-      <div class="login_l_img"><img src="<%=basePath%>resources/images/login-img.png" /></div>
+      <div class="login_l_img"><img src="<%=basePath%>resources/static/images/login-img.png" /></div>
       <div class="login">
-          <div class="login_logo"><a href="#"><img src="<%=basePath%>resources/images/login_logo.png" /></a></div>
+          <div class="login_logo"><a href="#"><img src="<%=basePath%>resources/static/images/login_logo.png" /></a></div>
           <div class="login_name">
                <p>烟草公司订货平台</p>
           </div>
           <form method="post">
               <input id="loginName" name="username" type="text"  placeholder="用户名" />
-                  <%--onfocus="this.value=''" onblur="if(this.value==''){this.value='用户名'}">--%>
-                  <%--<span  id="password_text" onclick="this.style.display='none';document.getElementById('password').style.display='block';document.getElementById('password').focus().select();" >密码</span>--%>
               <input id="password" name="password" type="password"  placeholder="密码"  />
-                  <%--&lt;%&ndash;onblur="if(this.value==''){&ndash;%&gt;--%>
-                  <%--// document.getElementById('password_text').style.display='block';--%>
-                  <%--// this.style.display='none'--%>
-                  <%--};--%>
+              <input id="rememberMe" type="checkbox" name="rememberMe"/>记住我<br>
           </form>
           <input value="登录" style="width:100%;" type="submit" onclick="check_login()"/>
           <div>  <a id="register_a"  class="launch-modal" href="#" data-modal-id="modal-register">免费注册</a> </div>
@@ -122,21 +117,25 @@
 
 
     <!-- Javascript -->
-    <script src="<%=basePath%>resources/assets/js/jquery-1.11.1.min.js"></script>
-    <script src="<%=basePath%>resources/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<%=basePath%>resources/assets/js/jquery.backstretch.min.js"></script>
-    <script src="<%=basePath%>resources/assets/js/scripts.js"></script>
-    <script src="<%=basePath%>resources/js/sweetalert.min.js"></script><!-- scripit init-->
-    <script src="<%=basePath%>resources/js/vue.min.js"></script>
+    <script src="<%=basePath%>resources/static/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="<%=basePath%>resources/static/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=basePath%>resources/static/assets/js/jquery.backstretch.min.js"></script>
+    <script src="<%=basePath%>resources/static/assets/js/scripts.js"></script>
+    <script src="<%=basePath%>resources/static/js/sweetalert.min.js"></script><!-- scripit init-->
+    <script src="<%=basePath%>resources/static/js/vue.min.js"></script>
 
     <!--[if lt IE 10]>
-    <script src="<%=basePath%>resources/assets/js/placeholder.js"></script>
+    <script src="<%=basePath%>resources/static/assets/js/placeholder.js"></script>
     <![endif]-->
     </body>
 
 <script type="text/javascript">
     // 登录检查函数
     function check_login () {
+        var remember = document.getElementById("rememberMe");
+        var rememberMe = remember.checked;
+        console.log(rememberMe);
+
         var login = $("#loginName").val();
         var pwd = $("#password").val();
         var chk = document.getElementsByName("chk");
@@ -144,33 +143,27 @@
             alert("用户名/邮箱地址不能为空！");
         else if(pwd == "" || pwd == null)
             alert("密码不能为空！");
-        /*else if(!(chk[0].checked)){
-            $.ajax({
-                type:"post",
-                data:{username:login, pwdd:pwd},
-                url:"LoginCheck",
-                success:function (str) {
-                    if(str == "match"){
-                        window.location.href="base";//跳转到主界面
-                    }
-                    else {
-                        alert("用户名不存在或密码错误或账号未激活！");
-                    }
-                }
-            })
-        }*/
-
         else {
             $.ajax({
                 type:"post",
-                data:{loginName:login, loginPwd:pwd},
-                url:"buyerCheck",
+                data:{
+                    loginName:login,
+                    loginPwd:pwd,
+                    rememberMe:rememberMe
+                },
+                url:"subLogin",
                 success:function (str2) {
-                    if(str2 == "match"){
+                    if(str2 == "admin"){
                         // 跳转到主界面
-                         window.location.href="admin_main";
+                         window.location.href="/cgret/Login/admin_main";
+                    } else if(str2 == "user"){
+                            window.location.href="http://localhost:8080/cgret/client/lookShop";
                     } else if(str2 == "unmatch"){
                         alert("用户名不存在或密码错误！");
+                    } else if(str2 == "有admin权限"){
+                        alert("你是一个admin")
+                    } else if(str2 == "无admin权限"){
+                        alert("你只是一个user");
                     }
                 }
             })
@@ -189,7 +182,7 @@
         if(parseInt(t) <= parseInt(0)){
             clearInterval(inter);
             //进入登录界面，在原本窗口返回登录界面
-            window.location.href="http://localhost:8080/cgret/login";
+            window.location.href="http://localhost:8080/cgret/Login/login";
             $("#close-btn").click();
 
         }
@@ -203,7 +196,7 @@
         var email_add = $("#register-email").val();
         var telphone = $("#register-tel").val();
 
-       t = 5;
+        t = 5;
 
         if(username == "" || username == null)
             alert("用户名不能为空！");
@@ -279,9 +272,6 @@
             })
         }
     }
-
-
-
 
 
 </script>

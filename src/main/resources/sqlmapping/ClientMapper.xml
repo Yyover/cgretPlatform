@@ -12,6 +12,7 @@
     <result column="haed_url" property="haedUrl" jdbcType="VARCHAR" />
     <result column="def_address_id" property="defAddressId" jdbcType="BIGINT" />
     <result column="def_address" property="defAddress" jdbcType="VARCHAR" />
+    <result column="identityType" property="identitytype" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     client_id, client_name, password, email, telephone, create_time, article_code, haed_url, 
-    def_address_id, def_address
+    def_address_id, def_address, identityType
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.javaee6.cgret.model.ClientExample" >
     select
@@ -110,11 +111,11 @@
     insert into client (client_id, client_name, password, 
       email, telephone, create_time, 
       article_code, haed_url, def_address_id, 
-      def_address)
+      def_address, identityType)
     values (#{clientId,jdbcType=BIGINT}, #{clientName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, 
       #{articleCode,jdbcType=VARCHAR}, #{haedUrl,jdbcType=VARCHAR}, #{defAddressId,jdbcType=BIGINT}, 
-      #{defAddress,jdbcType=VARCHAR})
+      #{defAddress,jdbcType=VARCHAR}, #{identitytype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.javaee6.cgret.model.Client" >
     insert into client
@@ -149,6 +150,9 @@
       <if test="defAddress != null" >
         def_address,
       </if>
+      <if test="identitytype != null" >
+        identityType,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="clientId != null" >
@@ -180,6 +184,9 @@
       </if>
       <if test="defAddress != null" >
         #{defAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="identitytype != null" >
+        #{identitytype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -222,6 +229,9 @@
       <if test="record.defAddress != null" >
         def_address = #{record.defAddress,jdbcType=VARCHAR},
       </if>
+      <if test="record.identitytype != null" >
+        identityType = #{record.identitytype,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,7 +248,8 @@
       article_code = #{record.articleCode,jdbcType=VARCHAR},
       haed_url = #{record.haedUrl,jdbcType=VARCHAR},
       def_address_id = #{record.defAddressId,jdbcType=BIGINT},
-      def_address = #{record.defAddress,jdbcType=VARCHAR}
+      def_address = #{record.defAddress,jdbcType=VARCHAR},
+      identityType = #{record.identitytype,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -273,6 +284,9 @@
       <if test="defAddress != null" >
         def_address = #{defAddress,jdbcType=VARCHAR},
       </if>
+      <if test="identitytype != null" >
+        identityType = #{identitytype,jdbcType=VARCHAR},
+      </if>
     </set>
     where client_id = #{clientId,jdbcType=BIGINT}
   </update>
@@ -286,7 +300,8 @@
       article_code = #{articleCode,jdbcType=VARCHAR},
       haed_url = #{haedUrl,jdbcType=VARCHAR},
       def_address_id = #{defAddressId,jdbcType=BIGINT},
-      def_address = #{defAddress,jdbcType=VARCHAR}
+      def_address = #{defAddress,jdbcType=VARCHAR},
+      identityType = #{identitytype,jdbcType=VARCHAR}
     where client_id = #{clientId,jdbcType=BIGINT}
   </update>
 </mapper>

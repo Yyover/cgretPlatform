@@ -9,8 +9,17 @@
 
   <context-param> <!--全局范围内环境参数初始化-->
     <param-name>contextConfigLocation</param-name>          <!--参数名称-->
-    <param-value>classpath:/spring/spring-mybatis.xml</param-value>        <!--参数取值-->
+    <param-value>classpath:/spring/spring-mybatis.xml,classpath:/spring/spring-redis.xml</param-value>        <!--参数取值-->
   </context-param>
+
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <!--过滤器配置-->
   <!--1 编码过滤器-->
@@ -23,10 +32,20 @@
       <param-value>UTF-8</param-value> <!--参数值-->
     </init-param>
   </filter>
+
   <filter-mapping><!--用来定义filter所对应的URL-->
     <filter-name>encodingFilter</filter-name>     <!--指定对应filter的名字-->
     <url-pattern>/*</url-pattern>        <!--指定filter所对应的URL-->
   </filter-mapping>
+
+    <filter>
+        <filter-name>myFilter</filter-name>
+        <filter-class>com.javaee6.cgret.Filter.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
   <!-- 2 Spring字符集过滤器 -->
   <filter>
@@ -47,6 +66,7 @@
   </filter-mapping>
 
 
+
   <!--监听器配置-->
   <!--例:spring监听器-->
   <listener>        <!--用来设定Listener接口-->
@@ -56,9 +76,18 @@
   <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
-  <!-- 监听Elasticsearch -->
+
+  <!--session监听器配置 -->
+  <listener>
+    <listener-class>com.javaee6.cgret.listener.SessionListener</listener-class>
+  </listener>
+  
+ <!--  监听Elasticsearch
   <listener>
     <listener-class>com.javaee6.cgret.listener.ElasticListener</listener-class>
+  </listener>-->
+  <listener>
+      <listener-class>com.javaee6.cgret.listener.SessionAttributeListener</listener-class>
   </listener>
 
   <!--servlet配置-->

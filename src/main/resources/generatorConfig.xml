@@ -39,9 +39,11 @@
                              targetProject="${db.mapperProject}" type="XMLMAPPER" />
 
         <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
-        <table  tableName="%" enableCountByExample="true"
-               enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
+        <table  tableName="unread_client" enableCountByExample="true"
+                enableUpdateByExample="true" enableDeleteByExample="true"
+                enableSelectByExample="true" selectByExampleQueryId="true"/>
+
 
     </context>
 </generatorConfiguration>

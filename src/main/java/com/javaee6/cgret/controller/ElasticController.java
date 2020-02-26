@@ -1,3 +1,4 @@
+/*
 package com.javaee6.cgret.controller;
 
 
@@ -21,9 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 
 
+*/
 /**
  * @author Yellowyao
- */
+ *//*
+
 @Controller
 @RequestMapping("/es")
 public class ElasticController {
@@ -37,10 +40,12 @@ public class ElasticController {
     @Resource
     private IClientRepository iClientRepository;
 
-    /**
+    */
+/**
      * 插入数据
      * @return
-     */
+     *//*
+
     @RequestMapping("/save1")
     public String save1(){
         Long clientId = 49L;
@@ -59,10 +64,12 @@ public class ElasticController {
         return "success";
     }
 
-    /**
+    */
+/**
      * 查询数据
      * @return
-     */
+     *//*
+
 
     @RequestMapping("/index")
     public String index(){
@@ -75,12 +82,14 @@ public class ElasticController {
         return "zz";
     }
 
-    /**
+    */
+/**
      * 需要用logstash进行数据迁移
      * 通过client的搜索btn来将id传入后台，再去数据库获得对应的client,再将这个client传到repository中保存
      * DEMO中是靠这个方法生成对象，再存进repository，我可以自己从数据拿
      * 疑问就是存进了repository，是用来干嘛的？？？
-     */
+     *//*
+
     @RequestMapping("/save")
     public void save(){
 
@@ -139,6 +148,7 @@ public class ElasticController {
 
         return map;
     }
+*/
 /*
     post /client/_search
     {
@@ -159,7 +169,8 @@ public class ElasticController {
         }
     }
     }
-*/
+*//*
+
 
 
 
@@ -187,3 +198,4 @@ public class ElasticController {
     }
 
 }
+*/

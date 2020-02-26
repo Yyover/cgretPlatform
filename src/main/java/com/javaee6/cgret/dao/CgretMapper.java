@@ -10,7 +10,7 @@ public interface CgretMapper {
 
     int deleteByExample(CgretExample example);
 
-    int deleteByPrimaryKey(Integer cgretId);
+    int deleteByPrimaryKey(Integer productid);
 
     int insert(Cgret record);
 
@@ -18,7 +18,7 @@ public interface CgretMapper {
 
     List<Cgret> selectByExample(CgretExample example);
 
-    Cgret selectByPrimaryKey(Integer cgretId);
+    Cgret selectByPrimaryKey(Integer productid);
 
     int updateByExampleSelective(@Param("record") Cgret record, @Param("example") CgretExample example);
 

@@ -3,7 +3,6 @@ package com.javaee6.cgret.model;
 import java.util.ArrayList;
 import java.util.List;
 
-@Deprecated
 public class CompanyExample {
     protected String orderByClause;
 

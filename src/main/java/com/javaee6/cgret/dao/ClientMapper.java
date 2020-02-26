@@ -2,9 +2,8 @@ package com.javaee6.cgret.dao;
 
 import com.javaee6.cgret.model.Client;
 import com.javaee6.cgret.model.ClientExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ClientMapper {
     int countByExample(ClientExample example);
